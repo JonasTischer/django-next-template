@@ -4,6 +4,8 @@
 
 `django-next-template` is a full-stack web application boilerplate, artfully combining Django's robust backend with Next.js's sleek frontend. This template is meticulously crafted for developers seeking a harmonious blend of Django's powerful backend capabilities and Next.js's seamless React-based frontend experience.
 
+![Alt text](image.png)
+
 ### Key Features and Technologies ✨
 
 - **Django Backend**: Robust and scalable, perfect for complex logic and database handling 🎯.
