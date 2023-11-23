@@ -18,6 +18,8 @@ to checkout the api docs
 
 -   open the `.env.local` file
 -   fill out the value for `DJANGO_SECRET_KEY`
+
+If you want to send activation emails to your users do the following:
 -   go to [AWS](https://aws.amazon.com)
 -   log into your aws account, or create one if you don't have one
 -   navigate to the `Simple Email Service (SES)`
@@ -31,6 +33,8 @@ to checkout the api docs
 -   take the access key and secret, and use them as the values in the `AWS_SES_ACCESS_KEY_ID` and `AWS_SES_SECRET_ACCESS_KEY` environment variables
 -   fill in the region where you set up the Simple Email Service in the `AWS_SES_REGION_NAME` environment variable
 -   fill in the email that will be sending emails in the `AWS_SES_FROM_EMAIL` environment variable
+
+If you want to enable Google Authentication
 -   go to google cloud [HERE](https://console.cloud.google.com)
 -   in the settings, hover over `APIs & Services`, and click on `OAuth consent screen`
 -   fill in the details for the OAuth consent screen
