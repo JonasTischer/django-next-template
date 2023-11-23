@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = ["Jonas Tischer"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^4.2.6"
+requests = "^2.31.0"
+djangorestframework = "^3.14.0"
+django-cors-headers = "^4.2.0"
+python-decouple = "^3.8"
+drf-spectacular = "^0.26.5"
+psycopg2-binary = "^2.9.9"
+djoser = "^2.2.0"
+django-ses = "^3.5.0"
+poethepoet = "^0.24.1"
+pytest-django = "^4.5.2"
+black = "^23.10.0"
+ruff = "^0.1.1"
+isort = "^5.12.0"
+dj-database-url = "^2.1.0"
+python-dotenv = "^1.0.0"
+django-storages = "^1.14.2"
+gunicorn = "^21.2.0"
+factory-boy = "^3.3.0"
+
+
+[tool.poetry.group.dev.dependencies]
+poethepoet = "^0.24.4"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poe.tasks]
+run = "poetry run python manage.py runserver"
+test = "poetry run pytest ."
+format = "poetry run black . "
+lint = "poetry run ruff . --fix"
+sort = "poetry run isort . "
+export_reqs = "poetry export -f requirements.txt --output requirements.txt --without-hashes"
+precommit = ["format", "lint", "test", "export_reqs"]
+manage = "poetry run python manage.py"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "backend.settings"
+# -- recommended but optional:
+python_files = ["test_*.py", "*_test.py", "testing/python/*.py"]

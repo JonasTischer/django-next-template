@@ -1,0 +1,40 @@
+version: '3.9'
+
+services:
+  backend:
+    build:
+      context: ./backend  # Adjust this to your Django backend directory
+      dockerfile: Dockerfile  # Point to the Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app  # Adjust this to your Django backend directory
+    command: >
+      sh -c "python manage.py wait_for_db &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASSWORD=changeme
+    depends_on:
+      - db
+  db:
+    image: postgres:13.2-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
+  frontend:
+    build:
+      context: ./frontend  # Adjust this to your Next.js frontend directory
+      dockerfile: Dockerfile  # Point to the Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app  # Adjust this to your Next.js frontend directory
+volumes:
+  dev-db-data:
