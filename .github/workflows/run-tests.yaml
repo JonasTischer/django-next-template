@@ -11,7 +11,7 @@ jobs:
     defaults:
       run:
         working-directory: backend  # Set the working directory for the entire job
-        
+
     steps:
       #----------------------------------------------
       #       check-out repo and set-up python
@@ -54,4 +54,6 @@ jobs:
       - name: Run tests
         run: |
           source .venv/bin/activate
-          pytest /backend/ -vs
+          pytest . -vs
+        env:
+          DEVELOPMENT_MODE: 'True'
