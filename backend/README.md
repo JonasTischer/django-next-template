@@ -1,59 +1,69 @@
-# Full Auth API
+# Backend: Full Auth API 🛡️
 
-## Instalation Guide
+## Installation Guide 📦
 
-poetry add --group dev poethepoet;
+This guide covers setting up the Django backend, which includes full JWT authentication and options for email activation and Google authentication.
 
-After running
+### Setting Up the Project 🚀
 
-poe run
+1. **Install Dependencies**:
+   - Run the following command to install dependencies using Poetry:
+     ```
+     poetry install;
+     ```
+   - After installation, start the server:
+     ```
+     poetry run poe run
+     ```
 
-head over to
+2. **API Documentation**:
+   - Visit [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/) to explore the API documentation.
 
-http://127.0.0.1:8000/api/docs/
+### Configuration 🛠️
 
-to checkout the api docs
+- **Django Secret Key**:
+  - Open the `.env.local` file.
+  - Fill out the value for `DJANGO_SECRET_KEY`.
 
-### To setup the project locally, follow these steps:
+### Email Activation Setup (Optional) 📧
 
--   open the `.env.local` file
--   fill out the value for `DJANGO_SECRET_KEY`
+To send activation emails:
 
-If you want to send activation emails to your users do the following:
--   go to [AWS](https://aws.amazon.com)
--   log into your aws account, or create one if you don't have one
--   navigate to the `Simple Email Service (SES)`
--   validate 2 emails, one which will be the sender email, and the other the receiver email
--   go to the `SMTP settings`, and click on `Create SMTP credentials`
--   after creating the IAM user, next navigate to `IAM`
--   under `Access management`, click on `users`
--   click on the `SES` user that was created
--   click on `Add permissions`, then add the `AmazonSESReadOnlyAccess` permission
--   then go to `Security credentials`, and create a new access key
--   take the access key and secret, and use them as the values in the `AWS_SES_ACCESS_KEY_ID` and `AWS_SES_SECRET_ACCESS_KEY` environment variables
--   fill in the region where you set up the Simple Email Service in the `AWS_SES_REGION_NAME` environment variable
--   fill in the email that will be sending emails in the `AWS_SES_FROM_EMAIL` environment variable
+1. **AWS Simple Email Service (SES)**:
+   - Sign in or create an account at [AWS](https://aws.amazon.com).
+   - Navigate to `Simple Email Service (SES)` and validate two emails (sender and receiver).
+   - Under `SMTP settings`, click on `Create SMTP credentials`.
+   - Create an IAM user and add `AmazonSESReadOnlyAccess` permission.
+   - Generate a new access key under `Security credentials`.
+   - Update your `.env.local` with AWS credentials:
+     - `AWS_SES_ACCESS_KEY_ID`
+     - `AWS_SES_SECRET_ACCESS_KEY`
+     - `AWS_SES_REGION_NAME` (set to your SES region)
+     - `AWS_SES_FROM_EMAIL` (set to your sender email)
 
-If you want to enable Google Authentication
--   go to google cloud [HERE](https://console.cloud.google.com)
--   in the settings, hover over `APIs & Services`, and click on `OAuth consent screen`
--   fill in the details for the OAuth consent screen
-    -   create an `External` user type
-    -   add the `Authorized domains`
-    -   under `scopes`, click `ADD OR REMOVE SCOPES`, add the `../auth/userinfo.email`, `../auth/userinfo.profile`, and `openid` scopes
-    -   under `Test users`, add your receiver email
--   next go to the settings again, hover over `APIS & Services`, and click on `Credentials`
--   click on `CREATE CREDENTIALS`, then click on `OAuth client ID`
--   take the access key and secret, and use them as the values in the `GOOGLE_AUTH_KEY` and `GOOGLE_AUTH_SECRET_KEY` environment variables
--   for `Application type`, you can select `Web application`
--   under `Authorized JavaScript origins`, add `http://localhost:3000`
--   under `Authorized redirect URIs`, add `http://localhost:3000/auth/google`
--   to have this work in your production environment, do the following:
-    -   under `Authorized JavaScript origins`, add `https://your-domain.com`
-    -   under `Authorized redirect URIs`, add `https://your-domain.com/auth/google`
+### Google Authentication Setup (Optional) 🔑
+
+To enable Google Authentication:
+
+1. **Google Cloud Platform**:
+   - Visit [Google Cloud Console](https://console.cloud.google.com).
+   - In `APIs & Services` > `OAuth consent screen`:
+     - Set user type to `External`.
+     - Add `Authorized domains`.
+     - Add scopes: `../auth/userinfo.email`, `../auth/userinfo.profile`, `openid`.
+     - Add your receiver email under `Test users`.
+   - In `Credentials`:
+     - Create `OAuth client ID`.
+     - Set `Application type` to `Web application`.
+     - Add Authorized JavaScript origins (`http://localhost:3000`) and redirect URIs (`http://localhost:3000/auth/google`).
+   - For production:
+     - Add your domain to JavaScript origins and redirect URIs.
+   - Update your `.env.local` with Google credentials:
+     - `GOOGLE_AUTH_KEY`
+     - `GOOGLE_AUTH_SECRET_KEY`
+
 ---
 
-### Deployment on Digitalocean:
+**Note**: Ensure that all configurations and environment variables are set correctly for smooth operation of the backend. The optional steps are for additional features and can be skipped if not required for your setup.
 
--   to deploy, go to the following link [HERE](https://www.youtube.com/watch?v=2pZmxh8Tf78)
--   next go to the timestamp at `2:47:14`, this is where I show the Digitalocean deployment
+---
