@@ -4,6 +4,12 @@
 
 This guide will help you set up and run the Next.js frontend for the `django-next-template` project. The frontend is designed to offer a seamless and modern web experience.
 
+## Technologies used
+<a href="https://www.django-rest-framework.org/" target="_blank"> <img src="https://img.shields.io/badge/DJANGO-REST-ff1709?style=for-the-badge&logo=django&logoColor=white&color=ff1709&labelColor=gray" /> </a>
+
+## API Documentation
+API documentation is done using swagger. Visit `/swagger` for API documentation.
+
 ### Prerequisites 📋
 
 - Node.js and npm (Ensure you have them installed)
