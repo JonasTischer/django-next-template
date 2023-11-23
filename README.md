@@ -8,11 +8,12 @@
 
 ### Key Features and Technologies ✨
 
-- **Django Backend**: Robust and scalable, perfect for complex logic and database handling 🎯.
-- **Next.js Frontend**: Modern React framework for building seamless, user-friendly interfaces 💻.
+- **Django Backend**: Robust and scalable, perfect for complex logic and database handling 🎯. <a href="https://www.djangoproject.com/" target="_blank"><img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"/> </a>
+- **Next.js Frontend**: Modern React framework for building seamless, user-friendly interfaces 💻. <a href="https://www.nextjs.org/" target="_blank"> <img src="https://img.shields.io/badge/Next.JS-000000?style=for-the-badge&logo=next.js&logoColor=white"/> </a>
+-- **TypeScript** <a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/></a>
 - **Tailwind CSS**: A utility-first CSS framework for rapid UI development 🎨.
-- **PostgreSQL Database**: Reliable and powerful database management system 🗄️.
-- **Docker Integration**: Simplify development and deployment with containerization 🐳.
+- **PostgreSQL Database**: Reliable and powerful database management system 🗄️. <a href="https://www.postgresql.org" target="_blank"> <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/></a>
+- **Docker Integration**: Simplify development and deployment with containerization 🐳. <a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/> </a>
 - **Complete JWT Authentication**: Secure and ready-to-use JSON Web Token (JWT) authentication 🔒.
 - **Poetry for Dependency Management**: Efficient management of Python packages 📦.
 - **Local and Docker Development**: Flexible setup for local and containerized environments 🌐.
