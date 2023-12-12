@@ -3,8 +3,6 @@ import pytest
 from rest_framework.test import APIClient
 from rest_framework_simplejwt.tokens import RefreshToken
 from .factories import UserAccountFactory
-import pytest
-from rest_framework.test import APIClient
 from django.contrib.auth import get_user_model
 
 

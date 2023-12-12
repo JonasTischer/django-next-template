@@ -27,26 +27,15 @@ export default function useLogin() {
 		event.preventDefault();
 
 		login({ email, password })
-      .unwrap()
-      .then(() => {
-        dispatch(setAuth());
-        toast.success('Logged in');
-        router.push('/dashboard');
-      })
-      .catch((error) => {
-        console.log(error);
-        if (
-          error.data &&
-          typeof error.data === 'object' &&
-          error.data.detail
-        ) {
-          // Directly display the error message from 'detail'
-          toast.error(error.data.detail);
-        } else {
-          // Fallback error message if error.data is not present or not in the expected format
-          toast.error('Failed to login');
-        }
-      });
+			.unwrap()
+			.then(() => {
+				dispatch(setAuth());
+				toast.success('Logged in');
+				router.push('/dashboard');
+			})
+			.catch(() => {
+				toast.error('Failed to log in');
+			});
 	};
 
 	return {

@@ -27,25 +27,14 @@ export default function useRegister() {
 		event.preventDefault();
 
 		register({ first_name, last_name, email, password, re_password })
-      .unwrap()
-      .then(() => {
-        toast.success('Please check email to verify account');
-        router.push('/auth/login');
-      })
-      .catch((error) => {
-        if (error.data && typeof error.data === 'object') {
-          // Iterate over each field's errors and display a toast for each error message
-          Object.entries(error.data).forEach(([field, value]) => {
-            const errors = value as string[]; // Type assertion
-            errors.forEach((errorMessage) => {
-              toast.error(`${errorMessage}`);
-            });
-          });
-        } else {
-          // Fallback error message if error.data is not present
-          toast.error('Failed to register account');
-        }
-      });
+			.unwrap()
+			.then(() => {
+				toast.success('Please check email to verify account');
+				router.push('/auth/login');
+			})
+			.catch(() => {
+				toast.error('Failed to register account');
+			});
 	};
 
 	return {
