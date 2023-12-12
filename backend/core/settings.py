@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "social_django",
     "users",
     "drf_spectacular",
+    "todos",
 ]
 
 MIDDLEWARE = [
