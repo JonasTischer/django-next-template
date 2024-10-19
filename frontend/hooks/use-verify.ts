@@ -1,12 +1,14 @@
 import { useEffect } from 'react';
 import { useAppDispatch } from '@/redux/hooks';
-import { setAuth, finishInitialLoad } from '@/redux/features/authSlice';
-import { useVerifyMutation } from '@/redux/features/authApiSlice';
+import { setAuth, setUser, finishInitialLoad } from '@/redux/features/authSlice';
+import { useRetrieveUserQuery, useVerifyMutation } from '@/redux/features/authApiSlice';
 
 export default function useVerify() {
 	const dispatch = useAppDispatch();
 
-	const [verify] = useVerifyMutation();
+  const [verify] = useVerifyMutation();
+
+  const { data: userData } = useRetrieveUserQuery();
 
 	useEffect(() => {
 		verify(undefined)
@@ -17,5 +19,11 @@ export default function useVerify() {
 			.finally(() => {
 				dispatch(finishInitialLoad());
 			});
-	}, []);
+  }, []);
+
+    useEffect(() => {
+      if (userData) {
+        dispatch(setUser(userData));
+      }
+    }, [userData, dispatch]);
 }

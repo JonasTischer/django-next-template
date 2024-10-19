@@ -15,13 +15,12 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/new-york/ui/dropdown-menu';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { RootState } from '@/redux/store';
+import { useSelector } from 'react-redux';
 
 export function UserNav() {
-  const {
-    data: user,
-    isLoading,
-    isFetching,
-  } = useRetrieveUserQuery();
+  const user = useSelector((state: RootState) => state.auth.user);
+  console.log('user in navbar', user);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

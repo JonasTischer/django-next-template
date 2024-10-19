@@ -2,9 +2,13 @@
 
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { List, Spinner } from '@/components/common';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/redux/store';
 
 export default function Page() {
-	const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
+
+  const user = useSelector((state: RootState) => state.auth.user);
+  console.log('user', user);
 
 	const config = [
 		{
@@ -21,13 +25,6 @@ export default function Page() {
 		},
 	];
 
-	if (isLoading || isFetching) {
-		return (
-			<div className='flex justify-center my-8'>
-				<Spinner lg />
-			</div>
-		);
-	}
 
 	return (
 		<>
