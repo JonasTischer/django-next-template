@@ -1,12 +1,12 @@
 'use client';
 
 import React, { createContext, useContext, ReactNode } from 'react';
-import { User, useUser, useIsAuthenticated } from '../hooks/useAuth';
+import { useUser } from '../hooks/useAuth';
+import { User } from '@/types/user';
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  isAuthenticated: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(
@@ -15,13 +15,10 @@ const AuthContext = createContext<AuthContextType | undefined>(
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data: user, isLoading: isUserLoading } = useUser();
-  const { data: isAuthenticated, isLoading: isAuthLoading } =
-    useIsAuthenticated();
 
   const value = {
     user: user || null,
-    isLoading: isUserLoading || isAuthLoading,
-    isAuthenticated: !!isAuthenticated,
+    isLoading: isUserLoading,
   };
 
   return (

@@ -5,22 +5,17 @@ import { useEffect } from 'react';
 import { useAuth } from '@/components/auth-provider';
 
 export default function DashboardPage() {
-  const { user, isLoading, isAuthenticated } = useAuth();
+  const { user, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/')
-      
+    if (!isLoading && !user) {
+      router.push('/');
     }
-  }, [isLoading, isAuthenticated, router]);
+  }, [isLoading, user, router]);
 
   if (isLoading) {
     return <div>Loading...</div>;
-  }
-
-  if (!isAuthenticated) {
-    return null;
   }
 
   if (!user) {

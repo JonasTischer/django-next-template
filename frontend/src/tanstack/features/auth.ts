@@ -1,4 +1,4 @@
-import { User } from '@/hooks/useAuth';
+import { User } from '@/types/user';
 import apiClient from './client';
 
 export const authApi = {
