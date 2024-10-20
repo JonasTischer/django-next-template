@@ -7,7 +7,6 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-django = "^4.2.6"
 requests = "^2.31.0"
 djangorestframework = "^3.14.0"
 django-cors-headers = "^4.2.0"
@@ -27,6 +26,7 @@ gunicorn = "^21.2.0"
 factory-boy = "^3.3.0"
 psycopg2-binary = "^2.9.9"
 djangorestframework-simplejwt = "^5.3.1"
+django = "^5.1.2"
 
 
 [build-system]

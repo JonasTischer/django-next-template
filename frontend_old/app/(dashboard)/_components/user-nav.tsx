@@ -14,13 +14,11 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/new-york/ui/dropdown-menu';
-import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { RootState } from '@/redux/store';
 import { useSelector } from 'react-redux';
 
 export function UserNav() {
   const user = useSelector((state: RootState) => state.auth.user);
-  console.log('user in navbar', user);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -59,7 +57,6 @@ export function UserNav() {
             Settings
             <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
           </DropdownMenuItem>
-
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
