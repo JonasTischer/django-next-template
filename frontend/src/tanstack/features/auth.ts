@@ -17,8 +17,7 @@ export const authApi = {
 
   verify: () => apiClient.post('/jwt/verify/'),
 
-  refreshToken: (refresh: string) =>
-    apiClient.post('/jwt/refresh/', { refresh }),
+  refreshToken: () => apiClient.post('/jwt/refresh/'),
 
   logout: () => apiClient.post('/logout/'),
 

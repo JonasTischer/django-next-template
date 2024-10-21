@@ -85,9 +85,10 @@ class CustomTokenRefreshView(TokenRefreshView):
         response = super().post(request, *args, **kwargs)
 
         if response.status_code == 200:
+            access_token = response.data.get("access")
             response.set_cookie(
                 'access',
-                response.data['access'],
+                access_token,
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,

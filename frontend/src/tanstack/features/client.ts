@@ -1,5 +1,6 @@
 import axios, { AxiosError } from 'axios';
 import { Mutex } from 'async-mutex';
+
 declare module '@tanstack/react-query' {
   interface Register {
     defaultError: AxiosError;
@@ -31,9 +32,9 @@ apiClient.interceptors.response.use(
 
         try {
           // Send refresh request, refresh token automatically included via cookies
-          await axios.post('http://localhost:8000/api/jwt/refresh/', {
-            withCredentials: true,
-          });
+          await apiClient.post(
+            'http://localhost:8000/api/jwt/refresh/'
+          );
 
           // Retry the original request
           return apiClient(originalRequest);
