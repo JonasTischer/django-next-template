@@ -1,4 +1,6 @@
+from tokenize import TokenError
 from django.conf import settings
+from jsonschema import ValidationError
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -15,12 +17,12 @@ class CustomProviderAuthView(ProviderAuthView):
         response = super().post(request, *args, **kwargs)
 
         if response.status_code == 201:
-            access_token = response.data.get("access_token")
-            refresh_token = response.data.get("refresh_token")
+            access = response.data.get("access")
+            refresh = response.data.get("refresh")
 
             response.set_cookie(
-                "access_token",
-                access_token,
+                "access",
+                access,
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,
@@ -28,8 +30,8 @@ class CustomProviderAuthView(ProviderAuthView):
                 samesite=settings.AUTH_COOKIE_SAMESITE,
             )
             response.set_cookie(
-                "refresh_token",
-                refresh_token,
+                "refresh",
+                refresh,
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,
@@ -45,12 +47,12 @@ class CustomTokenObtainPairView(TokenObtainPairView):
         response = super().post(request, *args, **kwargs)
 
         if response.status_code == 200:
-            access_token = response.data.get("access")  # Changed from "access_token"
-            refresh_token = response.data.get("refresh")  # Changed from "refresh_token"
+            access = response.data.get("access")
+            refresh = response.data.get("refresh")
 
             response.set_cookie(
-                "access_token",
-                access_token,
+                "access",
+                access,
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,
@@ -58,8 +60,8 @@ class CustomTokenObtainPairView(TokenObtainPairView):
                 samesite=settings.AUTH_COOKIE_SAMESITE,
             )
             response.set_cookie(
-                "refresh_token",
-                refresh_token,
+                "refresh",
+                refresh,
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,
@@ -75,17 +77,17 @@ class CustomTokenObtainPairView(TokenObtainPairView):
 
 class CustomTokenRefreshView(TokenRefreshView):
     def post(self, request, *args, **kwargs):
-        refresh_token = request.COOKIES.get('refresh_token')
+        refresh_token = request.COOKIES.get('refresh')
 
-        if not refresh_token:
-            return Response({"detail": "No valid refresh token found."}, status=status.HTTP_400_BAD_REQUEST)
+        if refresh_token:
+            request.data["refresh"] = refresh_token
 
         response = super().post(request, *args, **kwargs)
 
         if response.status_code == 200:
             response.set_cookie(
-                'access_token',
-                response.data['access_token'],
+                'access',
+                response.data['access'],
                 max_age=settings.AUTH_COOKIE_MAX_AGE,
                 path=settings.AUTH_COOKIE_PATH,
                 secure=settings.AUTH_COOKIE_SECURE,
@@ -98,10 +100,10 @@ class CustomTokenRefreshView(TokenRefreshView):
 
 class CustomTokenVerifyView(TokenVerifyView):
     def post(self, request, *args, **kwargs):
-        access_token = request.COOKIES.get("access_token")
+        access = request.COOKIES.get("access")
 
-        if access_token:
-            request.data["token"] = access_token
+        if access:
+            request.data["token"] = access
 
         return super().post(request, *args, **kwargs)
 
@@ -109,7 +111,7 @@ class CustomTokenVerifyView(TokenVerifyView):
 class LogoutView(APIView):
     def post(self, request, *args, **kwargs):
         response = Response(status=status.HTTP_204_NO_CONTENT)
-        response.delete_cookie("access_token")
-        response.delete_cookie("refresh_token")
+        response.delete_cookie("access")
+        response.delete_cookie("refresh")
 
         return response
