@@ -1,69 +1,62 @@
-# Backend: Full Auth API 🛡️
+# Backend: Django Full Auth API 🛡️
+
+## Overview
+
+This Django backend provides a robust API with full JWT authentication, ready to power your Next.js frontend.
+
+## Features
+
+- Django 5.0
+- Django REST Framework
+- JWT Authentication
+- PostgreSQL Database (in development)
+- Docker support (in development)
 
 ## Installation Guide 📦
 
-This guide covers setting up the Django backend, which includes full JWT authentication and options for email activation and Google authentication.
+### Prerequisites
+
+- Python 3.11+
+- Poetry
 
 ### Setting Up the Project 🚀
 
 1. **Install Dependencies**:
-   - Run the following command to install dependencies using Poetry:
-     ```
-     poetry install;
-     ```
-   - After installation, start the server:
-     ```
-     poetry run poe run
-     ```
+   ```
+   poetry install
+   ```
 
-2. **API Documentation**:
+2. **Activate the virtual environment**:
+   ```
+   poetry shell
+   ```
+
+3. **Set up environment variables**:
+   - Copy `.env.example` to `.env.local`
+   - Update the variables in `.env.local`
+
+4. **Run migrations**:
+   ```
+   python manage.py migrate
+   ```
+
+5. **Start the server**:
+   ```
+   python manage.py runserver
+   ```
+
+6. **API Documentation**:
    - Visit [http://127.0.0.1:8000/api/docs/](http://127.0.0.1:8000/api/docs/) to explore the API documentation.
 
-### Configuration 🛠️
+## Development 🛠️
 
-- **Django Secret Key**:
-  - Open the `.env.local` file.
-  - Fill out the value for `DJANGO_SECRET_KEY`.
+- **Running tests**: [To be added]
+- **Code linting**: [To be added]
 
-### Email Activation Setup (Optional) 📧
+## Deployment 🚀
 
-To send activation emails:
+- Deployment instructions will be added soon.
 
-1. **AWS Simple Email Service (SES)**:
-   - Sign in or create an account at [AWS](https://aws.amazon.com).
-   - Navigate to `Simple Email Service (SES)` and validate two emails (sender and receiver).
-   - Under `SMTP settings`, click on `Create SMTP credentials`.
-   - Create an IAM user and add `AmazonSESReadOnlyAccess` permission.
-   - Generate a new access key under `Security credentials`.
-   - Update your `.env.local` with AWS credentials:
-     - `AWS_SES_ACCESS_KEY_ID`
-     - `AWS_SES_SECRET_ACCESS_KEY`
-     - `AWS_SES_REGION_NAME` (set to your SES region)
-     - `AWS_SES_FROM_EMAIL` (set to your sender email)
+## Contributing 🤝
 
-### Google Authentication Setup (Optional) 🔑
-
-To enable Google Authentication:
-
-1. **Google Cloud Platform**:
-   - Visit [Google Cloud Console](https://console.cloud.google.com).
-   - In `APIs & Services` > `OAuth consent screen`:
-     - Set user type to `External`.
-     - Add `Authorized domains`.
-     - Add scopes: `../auth/userinfo.email`, `../auth/userinfo.profile`, `openid`.
-     - Add your receiver email under `Test users`.
-   - In `Credentials`:
-     - Create `OAuth client ID`.
-     - Set `Application type` to `Web application`.
-     - Add Authorized JavaScript origins (`http://localhost:3000`) and redirect URIs (`http://localhost:3000/auth/google`).
-   - For production:
-     - Add your domain to JavaScript origins and redirect URIs.
-   - Update your `.env.local` with Google credentials:
-     - `GOOGLE_AUTH_KEY`
-     - `GOOGLE_AUTH_SECRET_KEY`
-
----
-
-**Note**: Ensure that all configurations and environment variables are set correctly for smooth operation of the backend. The optional steps are for additional features and can be skipped if not required for your setup.
-
----
+Contributions are welcome! Please feel free to submit a Pull Request.

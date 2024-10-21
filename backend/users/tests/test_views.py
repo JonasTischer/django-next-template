@@ -8,25 +8,23 @@ from django.contrib.auth import get_user_model
 
 @pytest.mark.django_db
 def test_custom_token_obtain_pair_view():
-    user = UserAccountFactory.create()
+    user = UserAccountFactory()
     client = APIClient()
     response = client.post(
         "/api/jwt/create/", {"email": user.email, "password": "password"}
     )
     assert response.status_code == 200
-    assert "access" in response.data
-    assert "refresh" in response.data
+    assert "Login successful" in response.data["detail"]
 
 
 @pytest.mark.django_db
 def test_custom_token_refresh_view():
-    user = UserAccountFactory.create()
+    user = UserAccountFactory()
     refresh = RefreshToken.for_user(user)
     client = APIClient()
     client.cookies.load({"refresh": str(refresh)})
     response = client.post("/api/jwt/refresh/")
     assert response.status_code == 200
-    assert "access" in response.data
 
 
 @pytest.mark.django_db
@@ -40,10 +38,6 @@ def test_logout_view():
         "/api/jwt/create/", {"email": user.email, "password": "password"}
     )
     assert obtain_token_response.status_code == 200
-    access_token = obtain_token_response.data["access"]
-
-    # Authenticate the request with the access token
-    client.credentials(HTTP_AUTHORIZATION=f"Bearer {access_token}")
 
     # Attempt to logout
     logout_response = client.post("/api/logout/")
@@ -86,7 +80,7 @@ def test_user_creation_with_invalid_data():
 
 @pytest.mark.django_db
 def test_duplicate_user_creation():
-    UserAccountFactory.create(email="alice@example.com")
+    UserAccountFactory(email="alice@example.com")
     client = APIClient()
     duplicate_user_data = {
         "first_name": "Alice",

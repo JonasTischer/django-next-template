@@ -8,7 +8,7 @@ User = get_user_model()
 
 @pytest.mark.django_db
 def test_user_account_creation():
-    user = UserAccountFactory.create(
+    user = UserAccountFactory(
         first_name="Alice", last_name="Smith", email="alice@example.com"
     )
     assert user.email == "alice@example.com"
