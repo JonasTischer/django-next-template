@@ -1,82 +1,115 @@
-# django-next-template 🚀
+<a href="https://github.com/JonasTischer/django-next-template">
+  <img alt="Django Next.js Template" src="public/_static/og.jpg">
+  <h1 align="center">Django Next.js Template</h1>
+</a>
 
-## Overview 📖
+<p align="center">
+  Jumpstart your full-stack development with Django and Next.js!
+</p>
 
-`django-next-template` is a full-stack web application boilerplate, artfully combining Django's robust backend with Next.js's sleek frontend. This template is meticulously crafted for developers seeking a harmonious blend of Django's powerful backend capabilities and Next.js's seamless React-based frontend experience.
+<p align="center">
+  <a href="https://twitter.com/JonasTischer">
+    <img src="https://img.shields.io/twitter/follow/JonasTischer?style=flat&label=JonasTischer&logo=twitter&color=0bf&logoColor=fff" alt="Twitter follower count" />
+  </a>
+</p>
 
-![Alt text](image.png)
+<p align="center">
+  <a href="#introduction"><strong>Introduction</strong></a> ·
+  <a href="#installation"><strong>Installation</strong></a> ·
+  <a href="#tech-stack--features"><strong>Tech Stack + Features</strong></a> ·
+  <a href="#author"><strong>Author</strong></a>
+</p>
+<br/>
 
-### Key Features and Technologies ✨
-<a href="https://www.djangoproject.com/" target="_blank"><img src="https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white"/> </a>
-<a href="https://www.typescriptlang.org/" target="_blank"><img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white"/></a>
-<a href="https://www.nextjs.org/" target="_blank"> <img src="https://img.shields.io/badge/Next.JS-000000?style=for-the-badge&logo=next.js&logoColor=white"/> </a>
-<a href="https://www.postgresql.org" target="_blank"> <img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white"/></a>
-<a href="https://www.docker.com/" target="_blank"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/> </a>
+## Introduction
 
-- **Django Backend**: Robust and scalable, perfect for complex logic and database handling 🎯.
-- **Next.js Frontend**: Modern React framework for building seamless, user-friendly interfaces 💻.
-- **TypeScript**
-- **Tailwind CSS**: A utility-first CSS framework for rapid UI development 🎨.
-- **PostgreSQL Database**: Reliable and powerful database management system 🗄️.
-- **Docker Integration**: Simplify development and deployment with containerization 🐳.
-- **Complete JWT Authentication**: Secure and ready-to-use JSON Web Token (JWT) authentication 🔒.
-- **Poetry for Dependency Management**: Efficient management of Python packages 📦.
-- **Local and Docker Development**: Flexible setup for local and containerized environments 🌐.
+This template combines Django 5 for the backend and Next.js 14 for the frontend. It includes JWT authentication on the backend and Shadcn UI components for the frontend. This setup helps you start building full-stack web applications more quickly.
 
-## Getting Started 🌟
+## Installation
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+Clone & create this repo locally with the following command:
 
-### Prerequisites 📋
+```bash
+git clone https://github.com/JonasTischer/django-next-template.git
+cd django-next-template
+```
 
-- Docker and Docker Compose (for Docker setup)
-- Node.js and npm (for local frontend development)
-- Python 3.11 and Poetry (for local backend development)
+### Backend Setup
 
-### Installation and Running with Docker 🐳
+1. Navigate to the backend directory:
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-repo/django-next-template.git
-   cd django-next-template
+   ```sh
+   cd backend
    ```
 
-2. **Start the Docker Containers**:
-   ```bash
-   docker-compose up
+2. Install dependencies using Poetry:
+
+   ```sh
+   poetry install
    ```
 
-3. **Access the Application**:
-   - Backend: `http://localhost:8000`
-   - Frontend: `http://localhost:3000`
+3. Copy `.env` to `.env.local` and update the variables.
 
-### Running Locally Without Docker 🖥️
+4. Run migrations and start the Django server:
+   ```sh
+   poetry run python manage.py migrate
+   poetry run python manage.py runserver
+   ```
 
-#### Backend (See [backend README](./backend/README.md))
+### Frontend Setup
 
-- Instructions on running the Django backend locally with Poetry.
+1. Navigate to the frontend directory:
 
-#### Frontend (See [frontend README](./frontend/README.md))
+   ```sh
+   cd frontend
+   ```
 
-- Guidelines for running the Next.js frontend with Tailwind CSS locally.
+2. Install dependencies using Bun:
 
-## Development 🛠️
+   ```sh
+   bun install
+   ```
 
-Explore our development process, guidelines, and best practices.
+3. Start the development server:
+   ```sh
+   bun run dev
+   ```
 
-### Directory Structure 🗂️
+## Tech Stack + Features
 
-- `/backend`: All Django backend-related files.
-- `/frontend`: All Next.js frontend-related files.
+### Backend (Django 5)
 
-### Testing 🔍
+- [Django](https://www.djangoproject.com/) – High-level Python web framework
+- [Django REST Framework](https://www.django-rest-framework.org/) – Powerful and flexible toolkit for building Web APIs
+- JWT Authentication – Secure, token-based user authentication
+- [Poetry](https://python-poetry.org/) – Dependency management and packaging made easy for Python
 
-- How to run tests for both the frontend and backend. [To be added]
+### Frontend (Next.js 14)
 
-## Deployment 🚀
+- [Next.js 14](https://nextjs.org/) – React framework for building performant apps with the best developer experience
+- [TypeScript](https://www.typescriptlang.org/) – Typed superset of JavaScript
+- [Tailwind CSS](https://tailwindcss.com/) – Utility-first CSS framework for rapid UI development
+- [Shadcn UI](https://ui.shadcn.com/) – Re-usable components built using Radix UI and Tailwind CSS
+- [Tanstack Query](https://tanstack.com/query/latest) – Powerful asynchronous state management for TS/JS
+- [React Hook Form](https://react-hook-form.com/) – Performant, flexible and extensible forms with easy-to-use validation
+- [Zod](https://github.com/colinhacks/zod) – TypeScript-first schema validation with static type inference
 
-- Guidelines for deploying the application in a production environment. [Coming Soon]
+### Development and Deployment
 
-## Contributing 🤝
+- [Docker](https://www.docker.com/) – Containerization platform for easy deployment and scaling
+- [PostgreSQL](https://www.postgresql.org/) – Powerful, open-source object-relational database system
 
-- We welcome contributions! See how you can contribute to this project.
+## Roadmap
+
+- [ ] Complete deployment configuration
+- [ ] Fully containerize with Docker and PostgreSQL
+- [ ] Add comprehensive testing suite
+- [ ] Implement CI/CD pipeline
+
+## Author
+
+Created by Jonas Tischer in 2024.
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT)

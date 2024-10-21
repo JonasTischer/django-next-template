@@ -2,7 +2,7 @@
 name = "core"
 version = "0.1.0"
 description = ""
-authors = ["Jonas Tischer <jonas.tischer@gmx.de>"]
+authors = ["Jonas Tischer <jonas.tischer@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -39,8 +39,7 @@ test = "poetry run pytest ."
 format = "poetry run black . "
 lint = "poetry run ruff . --fix"
 sort = "poetry run isort . "
-export_reqs = "poetry export -f requirements.txt --output requirements.txt --without-hashes"
-precommit = ["format", "lint", "test", "export_reqs"]
+precommit = ["format", "lint", "test"]
 manage = "poetry run python manage.py"
 
 [tool.pytest.ini_options]
