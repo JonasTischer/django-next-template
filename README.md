@@ -1,5 +1,5 @@
 <a href="https://github.com/JonasTischer/django-next-template">
-  <img alt="Django Next.js Template" src="dashboard_image.png">
+  <img alt="Django Next.js Template" src="dashboard_image.jpeg">
   <h1 align="center">Django Next.js Template</h1>
 </a>
 
