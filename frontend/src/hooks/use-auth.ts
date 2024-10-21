@@ -44,3 +44,26 @@ export function useLogout() {
     },
   });
 }
+
+export function useSignUp() {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useMutation({
+    mutationFn: (userData: {
+      email: string;
+      first_name: string;
+      last_name: string;
+      password: string;
+      re_password: string;
+    }) => authApi.register(userData),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ['user'] });
+      router.push('/dashboard');
+      toast.success('Account created successfully');
+    },
+    onError: (error) => {
+      toast.error('Sign up failed');
+    },
+  });
+}
