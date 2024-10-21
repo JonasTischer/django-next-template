@@ -1,10 +1,10 @@
 <a href="https://github.com/JonasTischer/django-next-template">
   <img alt="Django Next.js Template" src="demo.gif">
-  <h1 align="center">Django Next.js Template</h1>
+  <h1 align="center">Django NextJS JWT Template</h1>
 </a>
 
 <p align="center">
-  Jumpstart your full-stack development with Django and Next.js!
+  Jumpstart your full-stack development with Django, NextJS and JWT authentication!
 </p>
 
 <p align="center">
